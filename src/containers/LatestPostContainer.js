@@ -1,6 +1,7 @@
 import React from "react";
 import { QueryRenderer, graphql } from "react-relay";
 import environment from "../createRelayEnvironment";
+import Post from "../components/Post";
 
 const LatestPostContainer = () => {
   return (
@@ -11,9 +12,7 @@ const LatestPostContainer = () => {
           posts {
             edges {
               node {
-                ... on Post {
-                  body
-                }
+                ...Post
               }
             }
           }
@@ -23,8 +22,7 @@ const LatestPostContainer = () => {
         if (error) {
           return <div>{error.message}</div>;
         } else if (props) {
-          console.log(props.posts.edges[0].node.body);
-          return <div>{props.posts.edges[0].node.body}</div>;
+          return <Post data={props.posts.edges[0].node} />;
         }
         return <div>Loading</div>;
       }}

@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import LatestPostContainer from "./containers/LatestPostContainer";
+import { Switch, Route } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
-      <div className="">
+      <div>
         <h2>Relay Test</h2>
-        <LatestPostContainer />
+        <Switch>
+          <Route exact path="/" component={LatestPostContainer} />
+        </Switch>
       </div>
     );
   }

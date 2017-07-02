@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9d319e1f36d6a0e952398a8c56e8b1a3
+ * @relayHash 1692645083d246c83df1182929cb76d0
  */
 
 /* eslint-disable */
@@ -12,9 +12,7 @@ import type {ConcreteBatch} from 'relay-runtime';
 export type LatestPostContainerQueryResponse = {|
   +posts: ?{|
     +edges: ?$ReadOnlyArray<?{|
-      +node: ?{|
-        +body?: string;
-      |};
+      +node: ?{| |};
     |}>;
   |};
 |};
@@ -26,11 +24,16 @@ query LatestPostContainerQuery {
   posts {
     edges {
       node {
-        body
+        ...Post
         id
       }
     }
   }
+}
+
+fragment Post on Post {
+  title
+  body
 }
 */
 
@@ -66,11 +69,9 @@ const batch /*: ConcreteBatch*/ = {
                 "plural": false,
                 "selections": [
                   {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "body",
-                    "storageKey": null
+                    "kind": "FragmentSpread",
+                    "name": "Post",
+                    "args": null
                   }
                 ],
                 "storageKey": null
@@ -122,6 +123,13 @@ const batch /*: ConcreteBatch*/ = {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
+                    "name": "title",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
                     "name": "body",
                     "storageKey": null
                   },
@@ -143,7 +151,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query LatestPostContainerQuery {\n  posts {\n    edges {\n      node {\n        body\n        id\n      }\n    }\n  }\n}\n"
+  "text": "query LatestPostContainerQuery {\n  posts {\n    edges {\n      node {\n        ...Post\n        id\n      }\n    }\n  }\n}\n\nfragment Post on Post {\n  title\n  body\n}\n"
 };
 
 module.exports = batch;
