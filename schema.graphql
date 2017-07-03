@@ -54,6 +54,7 @@ type Post implements Node {
   posted_by_user_id: Int!
   title: String!
   body: String!
+  link_text: String!
   comments(after: String, first: Int): CommentsConnection
 }
 
@@ -84,7 +85,7 @@ type RootMutation {
 type RootQuery {
   viewer: Node
   node(id: ID!): Node
-  posts(after: String, first: Int): PostConnection
+  posts(after: String, first: Int, linkText: String): PostConnection
 }
 
 type User implements Node {

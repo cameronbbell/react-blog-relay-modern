@@ -2,14 +2,15 @@ import React from "react";
 import { QueryRenderer, graphql } from "react-relay";
 import environment from "../createRelayEnvironment";
 import Post from "../components/Post";
+import PostNotFound from "../components/PostNotFound";
 
-const LatestPostContainer = () => {
+const SpecificPostContainer = (props) => {
   return (
     <QueryRenderer
       environment={environment}
       query={graphql`
-        query LatestPostContainerQuery {
-          posts {
+        query SpecificPostContainerQuery($linkText: String) {
+          posts(linkText: $linkText) {
             edges {
               node {
                 ...Post
@@ -18,11 +19,18 @@ const LatestPostContainer = () => {
           }
         }`
       }
+      variables={{
+        linkText: props.match.params.linkText
+      }}
       render={({ error, props }) => {
         if (error) {
           return <div>{error.message}</div>;
         } else if (props) {
-          return <Post data={props.posts.edges[0].node} />;
+          if(props.posts.edges.length === 1) {
+              return <Post data={props.posts.edges[0].node} />;
+          } else {
+            return <PostNotFound />
+          }
         }
         return <div>Loading</div>;
       }}
@@ -30,4 +38,4 @@ const LatestPostContainer = () => {
   );
 };
 
-export default LatestPostContainer;
+export default SpecificPostContainer;

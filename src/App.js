@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import LatestPostContainer from "./containers/LatestPostContainer";
+import SpecificPostContainer from "./containers/SpecificPostContainer";
 import { Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import "./App.css";
@@ -10,7 +11,7 @@ class App extends Component {
       <div>
         <Navbar />
         <div className="container">
-          <div className="row top-spacer">
+          <div className="row top-spacer no-gutters">
             <div className="col-2">
               <div className="card">
                 <div className="card-block">
@@ -23,11 +24,15 @@ class App extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-8">
+            <div className="col-8 left-spacer right-spacer">
               <div className="card">
                 <div className="card-block">
                   <Switch>
                     <Route exact path="/" component={LatestPostContainer} />
+                    <Route
+                      path="/posts/:linkText"
+                      component={SpecificPostContainer}
+                    />
                   </Switch>
                 </div>
               </div>

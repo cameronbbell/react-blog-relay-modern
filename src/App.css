@@ -1,2 +1,11 @@
+.top-spacer {
   margin-top: 10px;
+}
+
+.right-spacer {
+  margin-right: 10px;
+}
+
+.left-spacer {
+  margin-left: 10px;
 }
