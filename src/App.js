@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import LatestPostContainer from "./containers/LatestPostContainer";
 import SpecificPostContainer from "./containers/SpecificPostContainer";
+import RecentPostsContainer from "./containers/RecentPostsContainer";
 import { Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import About from "./components/About";
 import "./App.css";
 
 class App extends Component {
@@ -15,7 +17,7 @@ class App extends Component {
             <div className="col-2">
               <div className="card">
                 <div className="card-block">
-                  <p>Recent Posts</p>
+                  <RecentPostsContainer />
                 </div>
               </div>
               <div className="card top-spacer">
@@ -33,6 +35,7 @@ class App extends Component {
                       path="/posts/:linkText"
                       component={SpecificPostContainer}
                     />
+                    <Route path="/about" component={About} />
                   </Switch>
                 </div>
               </div>

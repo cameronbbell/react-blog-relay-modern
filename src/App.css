@@ -9,3 +9,10 @@
 .left-spacer {
   margin-left: 10px;
 }
+
+.sidebar-link {
+  display:block;
+  margin-bottom: 5px;
+  color: black;
+  text-decoration: underline black;
+}
