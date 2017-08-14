@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c15063f22526afe02121216bfe1464ef
+ * @relayHash 0e59dcb7bb27d54c304ffc302706f838
  */
 
 /* eslint-disable */
@@ -36,6 +36,11 @@ query SpecificPostContainerQuery(
 fragment Post on Post {
   title
   body
+  created_at
+  posted_by_user {
+    name
+    id
+  }
 }
 */
 
@@ -167,6 +172,38 @@ const batch /*: ConcreteBatch*/ = {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
+                    "name": "created_at",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "User",
+                    "name": "posted_by_user",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "name",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "id",
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
                     "name": "id",
                     "storageKey": null
                   }
@@ -181,7 +218,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query SpecificPostContainerQuery(\n  $linkText: String\n) {\n  posts(linkText: $linkText) {\n    edges {\n      node {\n        ...Post\n        id\n      }\n    }\n  }\n}\n\nfragment Post on Post {\n  title\n  body\n}\n"
+  "text": "query SpecificPostContainerQuery(\n  $linkText: String\n) {\n  posts(linkText: $linkText) {\n    edges {\n      node {\n        ...Post\n        id\n      }\n    }\n  }\n}\n\nfragment Post on Post {\n  title\n  body\n  created_at\n  posted_by_user {\n    name\n    id\n  }\n}\n"
 };
 
 module.exports = batch;

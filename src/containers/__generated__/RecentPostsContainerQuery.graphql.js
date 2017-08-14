@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 60d53074240eae573d69342e8f6658e8
+ * @relayHash 5062a1e129c596f75b80edbe7f797a57
  */
 
 /* eslint-disable */
@@ -28,9 +28,9 @@ query RecentPostsContainerQuery {
 
 fragment PostLinks on PostEdge {
   node {
-    id
     title
     link_text
+    id
   }
 }
 */
@@ -128,13 +128,6 @@ const batch /*: ConcreteBatch*/ = {
                         "kind": "ScalarField",
                         "alias": null,
                         "args": null,
-                        "name": "id",
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
                         "name": "title",
                         "storageKey": null
                       },
@@ -143,6 +136,13 @@ const batch /*: ConcreteBatch*/ = {
                         "alias": null,
                         "args": null,
                         "name": "link_text",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "id",
                         "storageKey": null
                       }
                     ],
@@ -158,7 +158,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query RecentPostsContainerQuery {\n  posts(first: 5) {\n    edges {\n      ...PostLinks\n    }\n  }\n}\n\nfragment PostLinks on PostEdge {\n  node {\n    id\n    title\n    link_text\n  }\n}\n"
+  "text": "query RecentPostsContainerQuery {\n  posts(first: 5) {\n    edges {\n      ...PostLinks\n    }\n  }\n}\n\nfragment PostLinks on PostEdge {\n  node {\n    title\n    link_text\n    id\n  }\n}\n"
 };
 
 module.exports = batch;

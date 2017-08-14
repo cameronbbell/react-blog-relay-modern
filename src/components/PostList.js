@@ -1,9 +1,10 @@
 import React from "react";
 import { graphql, createFragmentContainer } from "react-relay";
 import { Link } from "react-router-dom";
+import PageNumbers from "./PageNumbers";
 
-const PostLinks = createFragmentContainer(
-  ({ data }) => {
+const PostList = createFragmentContainer(
+  ({ data, count, itemsPerPage, currentPageNumber }) => {
     const links = data.map(d =>
       <Link
         to={"/posts/" + d.node.link_text}
@@ -15,23 +16,31 @@ const PostLinks = createFragmentContainer(
     );
     return (
       <div>
-        <h5>Recent Posts</h5>
         {links}
-        <br />
-        <Link to="/list/1" className="sidebar-link">More...</Link>
+        <div>
+          <PageNumbers
+            itemsPerPage={itemsPerPage}
+            currentPageNumber={currentPageNumber}
+            count={count}
+          />
+        </div>
       </div>
     );
   },
   graphql`
-    fragment PostLinks on PostEdge @relay(plural: true) {
+    fragment PostList on PostEdge @relay(plural: true) {
       node {
         ... on Post {
           title
+          created_at
           link_text
+          posted_by_user {
+            name
+          }
         }
       }
     }
   `
 );
 
-export default PostLinks;
+export default PostList;

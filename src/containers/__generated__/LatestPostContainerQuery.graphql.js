@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1692645083d246c83df1182929cb76d0
+ * @relayHash ff5d7a16623b8330a1e9ff7fb6ba6ca6
  */
 
 /* eslint-disable */
@@ -34,6 +34,11 @@ query LatestPostContainerQuery {
 fragment Post on Post {
   title
   body
+  created_at
+  posted_by_user {
+    name
+    id
+  }
 }
 */
 
@@ -137,6 +142,38 @@ const batch /*: ConcreteBatch*/ = {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
+                    "name": "created_at",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "User",
+                    "name": "posted_by_user",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "name",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "id",
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
                     "name": "id",
                     "storageKey": null
                   }
@@ -151,7 +188,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query LatestPostContainerQuery {\n  posts {\n    edges {\n      node {\n        ...Post\n        id\n      }\n    }\n  }\n}\n\nfragment Post on Post {\n  title\n  body\n}\n"
+  "text": "query LatestPostContainerQuery {\n  posts {\n    edges {\n      node {\n        ...Post\n        id\n      }\n    }\n  }\n}\n\nfragment Post on Post {\n  title\n  body\n  created_at\n  posted_by_user {\n    name\n    id\n  }\n}\n"
 };
 
 module.exports = batch;

@@ -8,10 +8,14 @@
 
 /*::
 import type {ConcreteFragment} from 'relay-runtime';
-export type PostLinks = $ReadOnlyArray<{|
+export type PostList = $ReadOnlyArray<{|
   +node: ?{|
     +title?: string;
+    +created_at?: string;
     +link_text?: string;
+    +posted_by_user?: {|
+      +name: string;
+    |};
   |};
 |}>;
 */
@@ -23,7 +27,7 @@ const fragment /*: ConcreteFragment*/ = {
   "metadata": {
     "plural": true
   },
-  "name": "PostLinks",
+  "name": "PostList",
   "selections": [
     {
       "kind": "LinkedField",
@@ -44,7 +48,32 @@ const fragment /*: ConcreteFragment*/ = {
           "kind": "ScalarField",
           "alias": null,
           "args": null,
+          "name": "created_at",
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
           "name": "link_text",
+          "storageKey": null
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "args": null,
+          "concreteType": "User",
+          "name": "posted_by_user",
+          "plural": false,
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "args": null,
+              "name": "name",
+              "storageKey": null
+            }
+          ],
           "storageKey": null
         }
       ],

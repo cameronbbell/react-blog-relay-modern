@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LatestPostContainer from "./containers/LatestPostContainer";
 import SpecificPostContainer from "./containers/SpecificPostContainer";
 import RecentPostsContainer from "./containers/RecentPostsContainer";
+import PostsListContainer from "./containers/PostsListContainer";
 import { Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import About from "./components/About";
@@ -34,6 +35,10 @@ class App extends Component {
                     <Route
                       path="/posts/:linkText"
                       component={SpecificPostContainer}
+                    />
+                    <Route
+                      path="/list/:pageNumber"
+                      component={PostsListContainer}
                     />
                     <Route path="/about" component={About} />
                   </Switch>

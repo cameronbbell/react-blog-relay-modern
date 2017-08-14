@@ -10,9 +10,32 @@
   margin-left: 10px;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .sidebar-link {
   display:block;
   margin-bottom: 5px;
   color: black;
-  text-decoration: underline black;
+  text-decoration: black underline;
+}
+
+.page-number {
+  display: inline;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: black;
+}
+
+.page-number-active {
+  text-decoration: black;
+}
+
+.page-number-inactive {
+  text-decoration: black underline;
+}
+
+.page-number-container {
+  margin-top: 50px;
 }
